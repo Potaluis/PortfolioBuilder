@@ -1,4 +1,3 @@
-// app/portfolio/config.tsx
 import Slider from '@react-native-community/slider';
 import { Stack } from 'expo-router';
 import React, { useState } from 'react';

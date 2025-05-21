@@ -1,4 +1,4 @@
-// styles/configStyles.ts
+// RUTA EXACTA: /styles/configStyles.ts
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
