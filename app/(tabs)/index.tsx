@@ -1,30 +1,71 @@
-// RUTA EXACTA: /app/(tabs)/index.tsx - MODIFICAR EL EXISTENTE
-
-// Añade esta importación al principio:
-import { ThemedText } from '@/components/ThemedText';
+// app/(tabs)/index.tsx
 import { useRouter } from 'expo-router';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
-// Después, dentro de la función HomeScreen, añade esto antes del return:
-const router = useRouter();
+import { HelloWave } from '../../components/HelloWave';
+import { ThemedText } from '../../components/ThemedText';
+import { ThemedView } from '../../components/ThemedView';
 
-const goToPortfolioConfig = () => {
-  // @ts-ignore - Ignorar errores de tipos
-  router.push('/portconfig');
-};
+export default function HomeScreen() {
+  const router = useRouter();
 
-// Y añade este botón en algún lugar del componente:
-<TouchableOpacity 
-  style={{
+  const goToPortfolioConfig = () => {
+    // @ts-ignore - Ignorar errores de tipos
+    router.push('/portconfig');
+  };
+
+  return (
+    <ThemedView style={styles.container}>
+      <ThemedView style={styles.titleContainer}>
+        <ThemedText type="title">Welcome!</ThemedText>
+        <HelloWave />
+      </ThemedView>
+      
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">PortfolioBuilder</ThemedText>
+        <ThemedText>
+          Crea y personaliza tu portafolio profesional con configuraciones
+          flexibles y diseños personalizados.
+        </ThemedText>
+      </ThemedView>
+      
+      <TouchableOpacity 
+        style={styles.configButton} 
+        onPress={goToPortfolioConfig}
+      >
+        <ThemedText style={styles.buttonText}>
+          Configurar Portfolio
+        </ThemedText>
+      </TouchableOpacity>
+    </ThemedView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 24,
+  },
+  stepContainer: {
+    gap: 8,
+    marginBottom: 24,
+  },
+  configButton: {
     backgroundColor: '#0a7ea4',
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 20,
-  }} 
-  onPress={goToPortfolioConfig}
->
-  <ThemedText style={{ color: '#fff', fontWeight: 'bold' }}>
-    Configurar Portfolio
-  </ThemedText>
-</TouchableOpacity>
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  }
+});
